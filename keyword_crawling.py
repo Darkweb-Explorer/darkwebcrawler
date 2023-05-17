@@ -41,7 +41,7 @@ def Sentor_crawling():
     url2 = set() # 중복을 제거할 set() 생성 / set은 중복 허용 x
     
     page = 1
-    max_page = 10  # 테스트로 2으로 지정
+    max_page = 10  
     
     for keyword in search_keyword:
         page = 1  # 페이지 초기화

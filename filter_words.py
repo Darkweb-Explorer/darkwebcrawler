@@ -3,4 +3,5 @@ filter_words = [
     "hacking",
     "ransomware",
     "bitcoin"
+    "drug"
 ]
