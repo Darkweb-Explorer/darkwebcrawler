@@ -17,7 +17,7 @@ def torch_crawling():
         url = "http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/search?query=" + keyword
         while True:
             try:
-                response = requests.get(url, proxies=proxies, timeout=30)
+                response = requests.get(url, proxies=proxies, timeout=10)
                 soup = BeautifulSoup(response.text, 'html.parser')
                 a_tags = soup.find_all('a')
                 for a_tag in a_tags:
@@ -80,18 +80,16 @@ def crawl_tor():
     file_path = 'darkresults.csv'
     df = pd.read_csv(file_path, header=None, names=['url'])
     # Onion URLs를 DataFrame으로 로드하고 .onion이 포함된 URL만 선택하여 중복을 제거
-    # df = pd.read_csv('onion_urls.csv', header=None, names=['url'])
+  
     df = df[df['url'].str.contains('.onion')].drop_duplicates() # contains로 .onion 감지 및 drop_duplicates()중복제거
-    # https://wikidocs.net/154060
+   
     result1 = []
     result2 = []
     result3 = []
-    # title, lang, 키워드 사전 기반 앵커 태그 크롤링
+ 
     for url in df['url']:
         try:
-            # 페이지 가져오기
             response = requests.get(url, proxies=proxies, timeout=30)
-            # BeautifulSoup 객체 생성, html 파싱
             soup = BeautifulSoup(response.content, "html.parser")
             print("접속성공")
         
@@ -114,9 +112,10 @@ def crawl_tor():
                 
     
             a_tags = soup.find_all('a')
+            
             filtered_words_found = set() # 중복제거
         
-        # 앵커 태그의 텍스트를 확인하고 필터링된 단어를 포함하고 있는지 확인합니다.
+      
             for a_tag in a_tags:
                 anchor_text = a_tag.text.lower().strip()
                 

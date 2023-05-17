@@ -10,7 +10,6 @@ def read_csv_file(csv_file):
 
 
 def crawl_tor(df):
-# Tor proxy 설정, tor 브라우저 필수 부분
     proxies = {'http': 'socks5h://localhost:9150',
                'https': 'socks5h://localhost:9150'}
     
@@ -48,9 +47,9 @@ def crawl_tor(df):
                 
     
             a_tags = soup.find_all('a')
+            
             filtered_words_found = set() # 중복제거
         
-        # 앵커 태그의 텍스트를 확인하고 필터링된 단어를 포함하고 있는지 확인합니다.
             for a_tag in a_tags:
                 anchor_text = a_tag.text.lower().strip()
                 
